@@ -3,7 +3,8 @@ import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-personaje',
-  templateUrl: './personaje.component.html'
+  templateUrl: './personaje.component.html',
+  styleUrls: ['./personaje.component.css']
 })
 export class PersonajeComponent {
   constructor(private route:ActivatedRoute)

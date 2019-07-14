@@ -9,6 +9,9 @@ import { ListadoComponent } from './listado/listado.component';
 import { PersonajesComponent } from './personajes/personajes.component';
 import { PersonajeComponent } from './personaje/personaje.component';
 import { ResidentesComponent } from './residentes/residentes.component';
+import { Angular2SwapiModule } from 'angular2-swapi';
+
+
 
 const appRoutes: Routes = [
   {path:'', component: PersonajesComponent},
@@ -30,7 +33,8 @@ const appRoutes: Routes = [
   imports: [
     BrowserModule,
     FormsModule,
-    RouterModule.forRoot(appRoutes)
+    RouterModule.forRoot(appRoutes),
+    Angular2SwapiModule
   ],
   providers: [],
   bootstrap: [AppComponent]
