@@ -7,4 +7,13 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'examenFut';
+
+  nombre:string = '';
+  apellido:string = '';
+
+  hacerAlgo()
+  {
+    alert("holi prro");
+  }
+
 }

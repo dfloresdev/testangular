@@ -1,1 +1,24 @@
 /* You can add global styles to this file, and also import other style files */
+.avatar {
+    border: 0.3rem solid rgba(#fff, 0.3);
+    margin-top: -6rem;
+    margin-bottom: 1rem;
+    max-width: 9rem;
+  }
+
+.navbar-dark .navbar-nav .nav-link {
+    color:#50B4F2;
+}
+
+.navbar-dark .navbar-nav .nav-link:hover {
+    color: rgba(80,180,242,.75);
+}
+
+.bg-primary {
+    background-color: #091B26!important;
+}
+
+.mano
+{
+    cursor: default;
+}
