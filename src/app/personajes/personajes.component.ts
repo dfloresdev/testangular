@@ -37,10 +37,16 @@ export class PersonajesComponent implements OnInit {
   allCharacters: Observable<People>;
 
   info = [];
+
+  ordenamiento = "";
   
   constructor(private route:ActivatedRoute, private api:Angular2SwapiService)
   {
-    console.log(this.route.queryParams);
+    // console.log(this.route.queryParams);
+    this.route.queryParams.subscribe(params => {
+      console.log(params['ordenar']);
+      this.ordenamiento = params['ordenar'];
+    });
     
   }
 
@@ -96,12 +102,38 @@ export class PersonajesComponent implements OnInit {
       console.log(resp);
       
       setTimeout( () => {
-        $(function (){
-          // debugger;
-          $("#star").DataTable({"order": [[ 0, "asc" ]]});
-          $("#load").css('display', 'none');
-          $("#tabCharacters").css('display', 'block');
-        });
+        if(this.ordenamiento == "nombre")
+        {
+          $(function (){
+            $("#star").DataTable({"order": [[ 0, "desc" ]]});
+            $("#load").css('display', 'none');
+            $("#tabCharacters").css('display', 'block');
+          });
+        }
+        else if(this.ordenamiento == "peso")
+        {
+          $(function (){
+            $("#star").DataTable({"order": [[ 2, "desc" ]]});
+            $("#load").css('display', 'none');
+            $("#tabCharacters").css('display', 'block');
+          });
+        }
+        else if(this.ordenamiento == "altura")
+        {
+          $(function (){
+            $("#star").DataTable({"order": [[ 1, "desc" ]]});
+            $("#load").css('display', 'none');
+            $("#tabCharacters").css('display', 'block');
+          });
+        }
+        else{
+          $(function (){
+            $("#star").DataTable();
+            $("#load").css('display', 'none');
+            $("#tabCharacters").css('display', 'block');
+          });
+        }
+        
       }, 3000);
       
     });
