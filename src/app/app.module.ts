@@ -10,6 +10,7 @@ import { PersonajesComponent } from './personajes/personajes.component';
 import { PersonajeComponent } from './personaje/personaje.component';
 import { ResidentesComponent } from './residentes/residentes.component';
 import { Angular2SwapiModule } from 'angular2-swapi';
+import { DataTablesModule } from 'angular-datatables';
 
 
 
@@ -34,7 +35,8 @@ const appRoutes: Routes = [
     BrowserModule,
     FormsModule,
     RouterModule.forRoot(appRoutes),
-    Angular2SwapiModule
+    Angular2SwapiModule,
+    DataTablesModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -31,6 +31,13 @@ export class PersonajesComponent implements OnInit {
   planetaR = "";
   planetaRey: Observable<Planet>;
 
+  dtOptions: DataTables.Settings = {};
+  
+
+  allCharacters: Observable<People>;
+
+  info = [];
+  
   constructor(private route:ActivatedRoute, private api:Angular2SwapiService)
   {
     console.log(this.route.queryParams);
@@ -78,12 +85,56 @@ export class PersonajesComponent implements OnInit {
       this.planetaReyUrl = valor.homeworld;
       this.planetaReyUrl = this.planetaReyUrl.split("/");
       this.planetaRey = this.api.getPlanet(Number(this.planetaReyUrl[this.planetaReyUrl.length-2]));
+      // console.log(this.planetaRey);
       this.planetaRey.forEach(planeta =>{
         this.planetaR = planeta.name;
       });
     });
-    
-   
+
+
+    this.llenarData().then(resp => {
+      console.log(resp);
+      
+      setTimeout( () => {
+        $(function (){
+          // debugger;
+          $("#star").DataTable({"order": [[ 0, "asc" ]]});
+          $("#load").css('display', 'none');
+          $("#tabCharacters").css('display', 'block');
+        });
+      }, 3000);
+      
+    });
+
+
   }
+
+  
+  public characterId(id)
+  {
+    return new Promise ((resolve, reject) => {
+      this.api.getPeopleById(id).subscribe(val => {
+        resolve(val);
+      });
+    });
+  }
+
+  public llenarData()
+  {
+    return new Promise ((resolve, reject)=>{
+      for (let i = 1; i <= 51; i++) {
+        if(i!=17)
+        {
+          this.characterId(i).then(respuesta => {
+            this.info.push(respuesta)
+            resolve(this.info);
+          });
+        }
+      }
+      // resolve(this.info);
+    });
+    
+  }
+  
   
 }
